@@ -17,6 +17,9 @@ class downiszepress:
         self.myHeightsixdown = 0
         self.myWidthninedown = 0
         self.myHeightninedown = 0
+        self.myHeightfree =0
+        self.myWidthfree =0
+        self.newsizefree=0
         self.img = ''
         self.file_path = ''
         self.save_path = ''
@@ -40,60 +43,75 @@ class downiszepress:
         self.file_path = tkinter.filedialog.askopenfilename()
         self.img = PIL.Image.open(self.file_path)
         self.myHeight, self.myWidth = self.img.size
-        print("Tay fichyew la se", self.myHeight, self.myWidth)
+        print("Tay fichyew la se: Longè: ", self.myHeight," --> Lajè: ", self.myWidth)
 
         return self.myHeight, self.myWidth
 
     def redwiTay(self):
         tay = ""
-        print("Tay fichye w lan se :" + tay)
+        #print("Tay fichye w lan se :" + tay)
         ##############################################
         l.tay()
         self.myHeighttreedown = round(self.myHeight / 3)
         self.myWidthtreedown = round(self.myWidth / 3)
         self.myHeightsixdown = round(self.myHeight / 6)
         self.myWidthsixdown = round(self.myWidth / 6)
-        self.myHeightninedowndown = round(self.myHeight / 9)
-        self.myWidthninedowndown = round(self.myWidth / 9)
+        self.myHeightninedown = round(self.myHeight / 9)
+        self.myWidthninedown = round(self.myWidth / 9)
 
         print("\n****** KEK OPSYON POUW REDWI TAY LA: ******")
-        print("A --> ", self.myHeighttreedown, " ", self.myWidthtreedown)
-        print("B -->", self.myHeightsixdown, " ", self.myWidthsixdown)
-        print("C -->", self.myHeightninedown, " ", self.myWidthninedowndown)
+        print("A --> Longè", self.myHeighttreedown, " --> Lajè ", self.myWidthtreedown)
+        print("B --> Longè", self.myHeightsixdown," --> Lajè ", self.myWidthsixdown)
+        print("C --> Longè", self.myHeightninedown," --> Lajè ", self.myWidthninedown)
+        print("N --> pou Antre Longè ak Lajè paw ")
         self.newsizetree=(self.myHeighttreedown, self.myWidthtreedown)
         self.newsizesix=(self.myHeightsixdown,self.myWidthsixdown)
-        self.newsizenine=((self.myHeightninedown,self.myWidthninedowndown))
+        self.newsizenine=((self.myHeightninedown,self.myWidthninedown))
         print("\n========================")
         opsyon = input("Antre --> X pouw retounen na meni prensipal la.\n Antre sa w chwazi a: ")
         opsyon = opsyon.upper()
         try:
             if (opsyon == "A"):
-                print("\nSuccès")
                 self.img = self.img.resize(self.newsizetree)
                 self.save_path = tkinter.filedialog.asksaveasfilename()
-
                 self.img.save(self.save_path+ "_nouvo.jpg")
+
+
+                print("\nSuccès")
                 meni = input("Antre --> X pouw retounen nan meni prensipal la: ")
                 if meni == "X":
                     l.menu1()
             if (opsyon == "B"):
-                print("\nSuccès")
                 self.img = self.img.resize(self.newsizesix)
                 self.save_path = tkinter.filedialog.asksaveasfilename()
                 self.img.save(self.save_path+ "_nouvo.jpg")
+                print("\nSuccès")
                 meni = input("Antre --> X pouw retounen nan meni prensipal la: ")
                 if meni == "X":
                     l.menu1()
             if (opsyon == "C"):
-                print("\nSuccès")
                 self.img = self.img.resize(self.newsizenine)
                 self.save_path = tkinter.filedialog.asksaveasfilename()
                 self.img.save(self.save_path+ "_nouvo.jpg")
+                print("\nSuccès")
                 meni = input("Antre --> X pouw retounen nan meni prensipal la: ")
                 if meni == "X":
                     l.menu1()
-            if (self.lotopsyon == "X"):
-                l.menu1()
+            if (opsyon == "N"):
+                print("\n==========================================")
+
+               # while self.myHeightfree>self.myHeight and self.myWidthfree>self.myWidth:
+                self.myHeightfree =int(input("Antre wotè ou vle imaj ou a genyen: "))
+                self.myWidthfree =int(input("Antre lajè ou vle imaj ou a genyen: "))
+                self.newsizefree=(self.myHeightfree,self.myWidthfree)
+                self.img = self.img.resize(self.newsizefree)
+                self.save_path = tkinter.filedialog.asksaveasfilename()
+                self.img.save(self.save_path + "_nouvo.jpg")
+                print("\nSuccès")
+
+                meni = input("Antre --> X pouw retounen nan meni prensipal la: ")
+                if meni == "X":
+                    l.menu1()
         except (UnboundLocalError,ValueError):
             pass
 
@@ -102,7 +120,7 @@ class downiszepress:
         print("\nKonprese imaj la(diminye nan tay li) --> K")
         print("\n=================================================")
         print("                                                  ")
-        chwa2 = input("Antre --> X pouw retounen na meni prensipal la.\n Antre sa w chwazi a: ")
+        chwa2 = input("Antre --> X pouw retounen nan meni prensipal la.\n Antre sa w chwazi a: ")
         chwa2 = chwa2.upper()
 
         if (chwa2 == "K"):
@@ -111,16 +129,6 @@ class downiszepress:
         if chwa2 == "X":
             l.menu1()
 
-    def menuVideo(self):
-        print("\nKonprese video a(diminye nan tay li) --> K")
-        print("\n=================================================")
-        print("                                                  ")
-        chwa3 = input("Antre --> X pouw retounen na meni prensipal la.\n Antre sa w chwazi a: ")
-        chwa3 = chwa3.upper()
-        if (chwa3 == "K"):
-            print("\nKonprese video a")
-        if chwa3 == "X":
-            l.menu1()
 
     def menu1(self):
         print(
@@ -136,19 +144,18 @@ class downiszepress:
         print(
             "                           |                     Bienvini nan aplikasyon ki ap pemet ou                             |")
         print(
-            "                           |                                  KONPRESE FICHYE                                       |")
+            "                           |                                  KONPRESE IMAJ                                         |")
         print(
             "                           |                                                                                        |")
         print(
-            "                           |            Tip fichye wap gen chans pou w konprese yo se--> Image, Video, Audio        |")
+            "                           |             wap gen chans pou w konprese --> Image NAN APLIKASYON SA                   |")
         print(
             "                           |                                                                                        |")
         print(
             "                           |________________________________________________________________________________________|")
 
         print("\nMen sa pou w antre pouw komanse redwi fifye w yo:")
-        print("          IMAGE --> I\n"
-              "          AUDIO --> A")
+        print("          IMAGE --> I\n")
         print("===================================")
         chwa1 = input("\n Pouw kite pwogram lan antre :--> K \nAntre tip fichye ou vle konprese a: ")
         chwa1 = chwa1.upper()
@@ -158,8 +165,6 @@ class downiszepress:
 
         if (chwa1 == "I"):
             l.menuImaj()
-        if (chwa1 == "V"):
-            l.menuVideo()
 
 
 l = downiszepress()
